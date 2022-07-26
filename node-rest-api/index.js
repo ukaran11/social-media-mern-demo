@@ -4,12 +4,20 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const userRoute = require('./routes/users');
 
 dotenv.config();
 
+// Middleware
+app.use(express.json());
+app.use(helmet());
+app.use(morgan("common"));
+
 mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true}, () => {
   console.log('Connected to Mongo');
-})
+});
+
+app.use('/api/user', userRoute);
 
 app.listen(8800, () => {
   console.log('Backend server is running')
