@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopolo
   console.log('Connected to Mongo');
 });
 
-app.use('/api/user', userRoute);
+app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute)
 app.listen(8800, () => {
   console.log('Backend server is running')
